@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1711913260 source:c:\users\user\onedrive\dokumente\fh technikum\algos\algos_ue1_hashtabelle\hashtabelle\main.cpp
+1711922168 source:c:\users\user\onedrive\dokumente\fh technikum\algos\algos_ue1_hashtabelle\hashtabelle\main.cpp
 	<iostream>
 	<fstream>
+	<sstream>
 	<string>
 	<vector>
 	<unordered_map>
-	"stock.h"
-	"StockManager.h"
+	<iomanip>
 
 1711912805 c:\users\user\onedrive\dokumente\fh technikum\algos\algos_ue1_hashtabelle\hashtabelle\stock.h
 	<iostream>

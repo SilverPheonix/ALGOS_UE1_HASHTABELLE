@@ -59,9 +59,21 @@ public:
 
         while (getline(file, line)) {
             stringstream ss(line);
+            string o, h, l,c,v,a;
             StockData data;
             getline(ss, data.date, ',');
-            ss >> data.open >> data.high >> data.low >> data.close >> data.volume >> data.adjClose;
+            getline(ss, o, ',');
+            data.open = stold(o);
+            getline(ss, h, ',');
+            data.high = stold(h);
+            getline(ss, l, ',');
+            data.low = stold(l);
+            getline(ss, c, ',');
+            data.close = stold(c);
+            getline(ss, a, ',');
+            data.adjClose = stold(a);
+            getline(ss, v, ',');
+            data.volume = stold(v);
             stocks[symbol].history.push_back(data);
         }
 
@@ -103,10 +115,20 @@ public:
             Stock& stock = it->second;
             cout << "Plot for " << stock.name << " (" << stock.symbol << ")" << endl;
             cout << "Date       Close" << endl;
+            StockData& latestData = stock.history.back();
+            int divider;
+            for(divider = 10; latestData.close/divider > 70; divider=divider*10){
+
+            }
+            int c = 0;
+            int count_30 = stock.history.size()-30;
             for (const StockData& data : stock.history) {
-                cout << data.date << "   " << setw(10) << data.close << " |";
-                for (int i = 0; i < data.close / 10; ++i) cout << "*";
-                cout << endl;
+                c ++;
+                if(c >= count_30){
+                    cout << data.date << " " << setw(10) << data.close << " |";
+                    for (int i = 0; i < data.close / divider; ++i) cout << "*";
+                    cout << endl;
+                };
             }
         } else {
             cout << "Stock symbol not found." << endl;
@@ -123,8 +145,8 @@ public:
             file << stock.name << "," << stock.wkn << "," << stock.symbol << endl;
             for (const StockData& data : stock.history) {
                 file << data.date << "," << data.open << "," << data.high << ","
-                     << data.low << "," << data.close << "," << data.volume << ","
-                     << data.adjClose << endl;
+                     << data.low << "," << data.close << ","<< data.adjClose << ","
+                     << data.volume << endl;
             }
             file << endl;
         }
@@ -146,9 +168,21 @@ public:
             addStock(name, wkn, symbol);
             while (getline(file, line) && !line.empty()) {
                 stringstream ss(line);
+                string o, h, l,c,v,a;
                 StockData data;
                 getline(ss, data.date, ',');
-                ss >> data.open >> data.high >> data.low >> data.close >> data.volume >> data.adjClose;
+                getline(ss, o, ',');
+                data.open = stold(o);
+                getline(ss, h, ',');
+                data.high = stold(h);
+                getline(ss, l, ',');
+                data.low = stold(l);
+                getline(ss, c, ',');
+                data.close = stold(c);
+                getline(ss, a, ',');
+                data.adjClose = stold(a);
+                getline(ss, v, ',');
+                data.volume = stold(v);
                 stocks[symbol].history.push_back(data);
             }
         }
@@ -161,7 +195,6 @@ int main() {
     char choice;
 
     do {
-        cout << "Menu:" << endl;
         cout << "1 - ADD" << endl;
         cout << "2 - DEL" << endl;
         cout << "3 - IMPORT" << endl;
