@@ -47,6 +47,8 @@ int main() {
             case '8': cout << "Quitting program." << endl; break;
             default: cout << "Invalid choice. Please try again." << endl;
         }
+        //Abstand zwischen abfragen im Terminal
+        cout <<endl;
         //wird hier beendet falls 8(eingeben wird)
     } while (choice != '8');
 

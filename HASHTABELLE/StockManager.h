@@ -42,7 +42,10 @@ public:
 private:
     //Es dürfen Maximal 1000 Stocks in der Hashtabelle sein
     static const int MAX_STOCKS = 1000;
+    //Hashtabelle für symbol
     Stock stocks[MAX_STOCKS];
+    //zweite Hashtabelle für suche nach namen
+    Stock stocksbyname[MAX_STOCKS];
     int numStocks = 0;
 };
 #endif // STOCKMANAGER_H_INCLUDED
